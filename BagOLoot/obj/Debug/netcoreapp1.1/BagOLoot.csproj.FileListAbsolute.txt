@@ -1,0 +1,8 @@
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot\bin\Debug\netcoreapp1.1\BagOLoot.deps.json
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot\bin\Debug\netcoreapp1.1\BagOLoot.runtimeconfig.json
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot\bin\Debug\netcoreapp1.1\BagOLoot.runtimeconfig.dev.json
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot\obj\Debug\netcoreapp1.1\BagOLoot.AssemblyInfo.cs
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot\bin\Debug\netcoreapp1.1\BagOLoot.dll
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot\bin\Debug\netcoreapp1.1\BagOLoot.pdb
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot\obj\Debug\netcoreapp1.1\BagOLoot.dll
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot\obj\Debug\netcoreapp1.1\BagOLoot.pdb

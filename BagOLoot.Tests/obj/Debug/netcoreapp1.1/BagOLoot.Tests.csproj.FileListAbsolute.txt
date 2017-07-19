@@ -1,0 +1,13 @@
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot.Tests\bin\Debug\netcoreapp1.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot.Tests\bin\Debug\netcoreapp1.1\xunit.runner.utility.netstandard15.dll
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot.Tests\bin\Debug\netcoreapp1.1\xunit.runner.reporters.netstandard15.dll
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot.Tests\bin\Debug\netcoreapp1.1\BagOLoot.Tests.deps.json
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot.Tests\bin\Debug\netcoreapp1.1\BagOLoot.Tests.runtimeconfig.json
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot.Tests\bin\Debug\netcoreapp1.1\BagOLoot.Tests.runtimeconfig.dev.json
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot.Tests\bin\Debug\netcoreapp1.1\BagOLoot.Tests.dll
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot.Tests\bin\Debug\netcoreapp1.1\BagOLoot.Tests.pdb
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot.Tests\bin\Debug\netcoreapp1.1\BagOLoot.dll
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot.Tests\bin\Debug\netcoreapp1.1\BagOLoot.pdb
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot.Tests\obj\Debug\netcoreapp1.1\BagOLoot.Tests.AssemblyInfo.cs
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot.Tests\obj\Debug\netcoreapp1.1\BagOLoot.Tests.dll
+C:\Users\Jason\workspace\csharp\exercises\bagoloot\BagOLoot.Tests\obj\Debug\netcoreapp1.1\BagOLoot.Tests.pdb
