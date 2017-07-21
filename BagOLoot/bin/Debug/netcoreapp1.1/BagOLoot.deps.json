@@ -1,14 +1,15 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.1",
-    "signature": "b5f5cf931a35593a75aaa67b90a99a71bcc58ff4"
+    "signature": "1536647e0fe7ffb4575dde889a8c1cebca4cb144"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v1.1": {
       "bagoloot/1.0.0": {
         "dependencies": {
-          "Microsoft.Data.Sqlite": "1.1.0"
+          "Microsoft.Data.Sqlite": "1.1.0",
+          "System.ValueTuple": "4.3.1"
         },
         "runtime": {
           "BagOLoot.dll": {}
@@ -47,6 +48,11 @@
         "runtime": {
           "lib/netstandard1.2/System.Data.Common.dll": {}
         }
+      },
+      "system.valuetuple/4.3.1": {
+        "runtime": {
+          "lib/netstandard1.0/System.ValueTuple.dll": {}
+        }
       }
     }
   },
@@ -76,6 +82,13 @@
       "sha512": "sha512-P8h4cVwZmYU7puJp9uA4DinIGwh8hPpjVcFvm3QCLelD1p//8vE5kcpHNQAufxb8OG6XvsrPTj6dRlC5JPG2Zw==",
       "path": "system.data.common/4.3.0",
       "hashPath": "system.data.common.4.3.0.nupkg.sha512"
+    },
+    "system.valuetuple/4.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xzDmg26Wb2x2rFDjwziaMYQJqxhrK+b4OUC008o7CnZhUMb2p5XfwgOgAQ/WlKhqxMUSDWRUm5/lNTKdh27pJA==",
+      "path": "system.valuetuple/4.3.1",
+      "hashPath": "system.valuetuple.4.3.1.nupkg.sha512"
     }
   }
 }

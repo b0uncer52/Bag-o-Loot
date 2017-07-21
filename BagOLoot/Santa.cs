@@ -7,74 +7,137 @@ namespace BagOLoot
 {
     public class Santa
     {
-        private List<Toy> bag;
+        private string _connectionString = $"Data Source={Environment.GetEnvironmentVariable("BAGOLOOT_DB")}";
+        private SqliteConnection _connection;
 
         public Santa()
         {
-            bag = new List<Toy>();
+            _connection = new SqliteConnection(_connectionString);
         }
         public int AddToyToBag(string toy, int childId)
         {
-            Toy newToy = new Toy(childId, toy);
-            bag.Add(newToy);
-            int toyId = bag.LastIndexOf(newToy);
-            return toyId;
+            int _lastId = 0;
+            using (_connection)
+            {
+                _connection.Open();
+                SqliteCommand dbcmd = _connection.CreateCommand();
+
+                dbcmd.CommandText = $"INSERT INTO toy VALUES (null, '{childId}', '{toy}');";
+                dbcmd.ExecuteNonQuery();
+                
+                dbcmd.CommandText = $"SELECT last_insert_rowid();";
+                 using (SqliteDataReader dr = dbcmd.ExecuteReader()) 
+                {
+                    if (dr.Read()) {
+                        _lastId = dr.GetInt32(0);
+                    } else {
+                        throw new Exception("Unable to insert value");
+                    }
+                }
+
+                dbcmd.Dispose();
+                _connection.Close();
+            }
+            return _lastId;
         }
 
         public Dictionary<int, string> GetToysInChildsBag(int childId)
         {
-            Dictionary<int, string> childToys = new Dictionary<int, string>();
-            foreach(Toy t in bag)
-            {   
-                if(t.Child == childId)
+            Dictionary<int, string> _childToys = new Dictionary<int, string>();
+
+            using (_connection)
+            {
+                _connection.Open();
+                SqliteCommand dbcmd = _connection.CreateCommand();
+                
+                dbcmd.CommandText = $"SELECT id, name FROM toy WHERE toy.childId = {childId};";
+                using (SqliteDataReader dr = dbcmd.ExecuteReader()) 
                 {
-                    childToys.Add(bag.IndexOf(t), t.Name);
+                    while (dr.Read()) 
+                    {
+                         _childToys.Add(dr.GetInt32(0), dr[1].ToString());
+                    } 
                 }
+
+                dbcmd.Dispose();
+                _connection.Close();
             }
-            return childToys;
+            return _childToys;
         }
 
         public void RemoveToyFromBag(int toyId)
         {
-            bag.RemoveAt(toyId);
+            using (_connection)
+            {
+                _connection.Open ();
+                SqliteCommand dbcmd = _connection.CreateCommand ();
+
+                // Insert the new child
+                dbcmd.CommandText = $"DELETE FROM toy WHERE toy.id = {toyId};";
+                dbcmd.ExecuteNonQuery();
+
+                dbcmd.Dispose();
+                _connection.Close();
+            }
         }
         
-        public List<int> ChildrenToDeliver()
+        public Dictionary<int, string> ChildrenToDeliver()
         {
-            List<int> children = new List<int>();
-            foreach(Toy t in bag)
+            Dictionary<int, string> _children = new Dictionary<int, string>();
+            using(_connection)
             {
-                if(!children.Contains(t.Child)){
-                    children.Add(t.Child);
+                _connection.Open();
+                SqliteCommand dbcmd = _connection.CreateCommand();
+                dbcmd.CommandText = "SELECT c.id, c.name FROM child c, toy t WHERE t.childId = c.id AND c.delivered = 0 GROUP BY c.id;";
+
+                using(SqliteDataReader dr = dbcmd.ExecuteReader())
+                {
+                    while(dr.Read())
+                    {
+                        _children.Add(dr.GetInt32(0), dr[1].ToString());
+                    }
                 }
+                dbcmd.Dispose();
+                _connection.Close();
             }
-            return children;
+            return _children;
         }
-    }
 
-    public class Toy
-    {
-        private string name;
-        private int child;
-
-        public int Child
+        public bool DeliverToChild(int childId)
         {
-            get{
-                return child;
+            using(_connection)
+            {
+                _connection.Open();
+                SqliteCommand dbcmd = _connection.CreateCommand();
+                dbcmd.CommandText = $"UPDATE child SET delivered = 1 WHERE child.id = {childId}";
+                dbcmd.ExecuteNonQuery();
+                dbcmd.Dispose();
+                _connection.Close();
             }
+            return true;
         }
-        public string Name
+
+        public List<(int, string, string)> DeliveryReport()
         {
-            get{
-                return name;
+             List<(int id, string name, string toy)> _report = new List<(int, string, string)>();
+
+            using(_connection)
+            {
+                _connection.Open();
+                SqliteCommand dbcmd = _connection.CreateCommand();
+                dbcmd.CommandText = "SELECT c.id, c.name, t.name FROM child c LEFT JOIN toy t ON t.childId = c.id WHERE c.delivered = 1 GROUP BY t.childId;";
+
+                using(SqliteDataReader dr = dbcmd.ExecuteReader())
+                {
+                    while(dr.Read())
+                    {
+                        _report.Add((dr.GetInt32(0), dr[1].ToString(), dr[2].ToString()));
+                    }
+                }
+                dbcmd.Dispose();
+                _connection.Close();
             }
+            return _report;
         }
-
-        public Toy (int childId, string toyName)
-        {
-            name = toyName;
-            child = childId;
-        }
-
     }
 }

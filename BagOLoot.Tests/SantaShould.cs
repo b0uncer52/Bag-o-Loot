@@ -21,6 +21,7 @@ namespace BagOLoot.Tests
         {            
             int toyId = _santa.AddToyToBag(toyName, childId);
             Dictionary<int, string> toyList = _santa.GetToysInChildsBag(childId);
+            Console.WriteLine("error 1: " + toyList[toyId] + ": " + toyName);
 
             Assert.Equal(toyList[toyId], toyName);
         }
@@ -40,10 +41,10 @@ namespace BagOLoot.Tests
         {
             int toyId = _santa.AddToyToBag(toyName, childId);
             int toyId2 = _santa.AddToyToBag("Ball", 2);
-            var childrenWithToys = _santa.ChildrenToDeliver();
-            Assert.Contains(1, childrenWithToys);
-            Assert.Contains(2, childrenWithToys);
-            Assert.DoesNotContain(3, childrenWithToys);
+            Dictionary<int, string> childrenWithToys = _santa.ChildrenToDeliver();
+            Assert.Equal(childrenWithToys[2], "Sue");
+            Assert.Equal(childrenWithToys[1], "Billy");
+            Assert.True(!childrenWithToys.ContainsKey(3));
         }
 
         [Fact]
@@ -53,10 +54,13 @@ namespace BagOLoot.Tests
 
             Assert.IsType<Dictionary<int, string>>(kidsToys);
         }
-        
+
+        [Fact]
+        public void DeliveryToysToChild()
+        {
+            bool delivered = _santa.DeliverToChild(childId);
+
+            Assert.True(delivered);
+        }
     }
 }
-/* 
-Must be able to list all children who are getting a toy.
-Must be able to list all toys for a given child's name.
-Must be able to set the delivered property of a child, which defaults to false to true. */
